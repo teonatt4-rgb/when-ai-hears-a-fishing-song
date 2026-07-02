@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="作品二研究叙事：AI如何理解、重构并压缩传统音乐中的文化信息。" />
+    <title>研究路径｜RESEARCH JOURNEY</title>
+    <link rel="stylesheet" href="./journey.css?v=10" />
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="site-head__home" href="./index.html">
+        <span>←</span>
+        <b>声音研究 / SOUND STUDY</b>
+        <small>梁珏童 / LIANG JUETONG</small>
+      </a>
+      <div class="site-head__chapter">
+        <span id="activeIndex">00</span>
+        <p id="activeLabel">先听，再看标签 / LISTEN BEFORE THE LABEL</p>
+      </div>
+      <div class="site-head__actions">
+        <span>建议佩戴耳机 / SOUND RECOMMENDED</span>
+        <a href="./sound-sculpture.html?v=28&amp;mode=excerpt">3D声音实验室 / SOUND LAB ↗</a>
+      </div>
+      <div class="reading-progress"><i id="readingProgress"></i></div>
+    </header>
+
+    <aside class="guide" aria-label="研究章节导览">
+      <a href="#blind" class="active" data-index="00" data-label="先听，再看标签 / LISTEN BEFORE THE LABEL">
+        <span>00</span><b>盲听 / BLIND LISTENING</b>
+      </a>
+      <a href="#prompt-lab" data-index="01" data-label="提示词如何改变声音 / TEACHING THE MODEL">
+        <span>01</span><b>提示演化 / PROMPT EVOLUTION</b>
+      </a>
+      <a href="#copyright" data-index="02" data-label="当系统拒绝演奏者 / WHEN THE SYSTEM REFUSED">
+        <span>02</span><b>声音权属 / OWNERSHIP</b>
+      </a>
+      <a href="#comparison" data-index="03" data-label="人的演奏与模型输出 / HUMAN AND MODEL">
+        <span>03</span><b>人机对照 / COMPARISON</b>
+      </a>
+      <a href="#conclusion" data-index="04" data-label="不可被复制的部分 / THE IRREPRODUCIBLE">
+        <span>04</span><b>研究发现 / INTERPRETATION</b>
+      </a>
+    </aside>
+
+    <main>
+      <section class="chapter chapter--blind chapter--light" id="blind" data-chapter>
+        <div class="chapter__number">00</div>
+        <div class="chapter__intro reveal">
+          <p class="eyebrow">盲听实验 / INTERACTIVE LISTENING</p>
+          <h1 class="title-lines">
+            <span>哪一段更像</span>
+            <span>真正的渔歌？</span>
+          </h1>
+          <p class="title-translation">WHICH ONE SOUNDS CLOSER TO A FISHING SONG?</p>
+          <p class="lead">
+            先不要看标签。让耳朵成为这项研究的入口。
+            <span class="translation">Listen before reading the label. Let your ears lead the inquiry.</span>
+          </p>
+        </div>
+
+        <div class="blind-test reveal">
+          <div class="blind-test__head">
+            <span>匿名声音 / UNLABELLED AUDIO · A—B</span>
+            <span>建议佩戴耳机 / HEADPHONES RECOMMENDED</span>
+          </div>
+          <div class="blind-grid">
+            <button
+              class="sound-card"
+              data-audio="./assets/experiment_audio/r1_a_generic_style.mp3"
+              data-title="声音 A / SOUND A"
+              data-subtitle="匿名生成声音 / Unlabelled generated sample"
+              data-context="blind"
+            >
+              <span class="sound-card__letter">A</span>
+              <span class="waveform" data-waveform="3"></span>
+              <span class="sound-card__action">聆听 / LISTEN ↗</span>
+            </button>
+            <button
+              class="sound-card"
+              data-audio="./assets/experiment_audio/r4_a_own_audio_upload.mp3"
+              data-title="声音 B / SOUND B"
+              data-subtitle="匿名生成声音 / Unlabelled generated sample"
+              data-context="blind"
+            >
+              <span class="sound-card__letter">B</span>
+              <span class="waveform" data-waveform="8"></span>
+              <span class="sound-card__action">聆听 / LISTEN ↗</span>
+            </button>
+          </div>
+
+          <div class="guess-panel" id="guessPanel">
+            <div>
+              <span>你的判断 / YOUR IMPRESSION</span>
+              <strong id="guessTitle">哪一段携带了更多“地方性”？</strong>
+            </div>
+            <div class="guess-panel__choices">
+              <button data-guess="A">A</button>
+              <button data-guess="B">B</button>
+              <button data-guess="UNSURE">不确定 / UNSURE</button>
+            </div>
+            <p id="guessResult">你的判断将引出这项实验的核心问题。 / Your choice reveals the central question.</p>
+          </div>
+        </div>
+
+        <a class="scroll-cue" href="#prompt-lab"><span>继续参观 / CONTINUE</span><b>↓</b></a>
+      </section>
+
+      <div class="chapter-bridge chapter-bridge--light-dark" aria-hidden="true">
+        <span>00</span><i></i><b>01</b>
+        <p>从聆听，到提示 / FROM LISTENING TO LANGUAGE</p>
+      </div>
+
+      <section class="chapter chapter--prompt chapter--dark" id="prompt-lab" data-chapter>
+        <div class="chapter__number">01</div>
+        <div class="chapter__intro chapter__intro--compact reveal">
+          <p class="eyebrow">提示词演化 / PROMPT EVOLUTION · R1—R3</p>
+          <h2 class="title-lines">
+            <span>不是让AI“更像中国”，</span>
+            <span>而是教它听见语境。</span>
+          </h2>
+          <p class="title-translation">NOT “MORE CHINESE”, BUT MORE ATTENTIVE TO CONTEXT.</p>
+        </div>
+
+        <div class="prompt-lab reveal">
+          <div class="round-rail" role="tablist" aria-label="提示词实验轮次">
+            <button class="active" data-round="0">
+              <span>R1</span><b>宽泛风格</b><i>GENERIC STYLE</i>
+            </button>
+            <button data-round="1">
+              <span>R2</span><b>地域语境</b><i>CULTURAL CONTEXT</i>
+            </button>
+            <button data-round="2">
+              <span>R3</span><b>演奏知识</b><i>PERFORMANCE KNOWLEDGE</i>
+            </button>
+          </div>
+
+          <div class="evidence-window">
+            <div class="evidence-window__head">
+              <span id="roundVideoLabel">R1 / 宽泛提示 / GENERIC PROMPT</span>
+              <span>生成过程 / GENERATION PROCESS</span>
+            </div>
+            <video
+              id="roundVideo"
+              src="./assets/experiment_video/screen_r1_prompt_output.mp4"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            ></video>
+            <div class="evidence-window__scan"></div>
+          </div>
+
+          <article class="round-reading">
+            <div class="round-reading__head">
+              <span id="roundIndex">R1</span>
+              <p>当前声音 / CURRENT LISTENING</p>
+            </div>
+            <h3>
+              <span id="roundTitleZh">宽泛风格</span>
+              <small id="roundTitleEn">GENERIC STYLE</small>
+            </h3>
+            <p class="round-copy">
+              <span id="roundDescriptionZh">当提示词只写“中国风”，模型得到的是一种顺滑、但没有明确出处的东方感。</span>
+              <small id="roundDescriptionEn">A broad prompt produces a polished but culturally unlocated sound.</small>
+            </p>
+            <div class="prompt-tokens" id="promptTokens">
+              <span>CHINESE STYLE</span>
+              <span>SOLO VIOLIN</span>
+              <span>PENTATONIC</span>
+            </div>
+            <div class="round-audio">
+              <button id="roundAudioA">聆听输出 A / LISTEN A</button>
+              <button id="roundAudioB">聆听输出 B / LISTEN B</button>
+            </div>
+            <div class="finding">
+              <span>聆听发现 / LISTENING NOTE</span>
+              <p id="roundFindingZh">它听起来“像中国”，但还不像《丰收渔歌》。</p>
+              <small id="roundFindingEn">It sounds broadly “Chinese”, but not yet like this specific fishing song.</small>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="chapter-bridge chapter-bridge--dark-light" aria-hidden="true">
+        <span>01</span><i></i><b>02</b>
+        <p>从生成，到权属 / FROM GENERATION TO OWNERSHIP</p>
+      </div>
+
+      <section class="chapter chapter--copyright chapter--light" id="copyright" data-chapter>
+        <div class="chapter__number">02</div>
+        <div class="chapter__intro chapter__intro--compact reveal">
+          <p class="eyebrow">人的录音进入系统 / HUMAN RECORDING INPUT · R4</p>
+          <h2 class="title-lines">
+            <span>然后，系统拒绝了</span>
+            <span>演奏者自己的声音。</span>
+          </h2>
+          <p class="title-translation">THEN THE SYSTEM REFUSED THE PERFORMER'S OWN SOUND.</p>
+          <p class="lead">
+            研究由此从“AI能否生成音乐”，转向“谁拥有声音，谁能解释传统”。
+            <span class="translation">The question shifts from generation to ownership and cultural authority.</span>
+          </p>
+        </div>
+
+        <div class="ownership-layout reveal">
+          <ol class="event-chain">
+            <li class="active" data-event="0">
+              <span>01</span>
+              <div><b>原始演奏 / ORIGINAL PERFORMANCE</b><p>上传本人完整演奏。<small>Uploading the complete performance.</small></p></div>
+            </li>
+            <li data-event="1">
+              <span>02</span>
+              <div><b>检测到音频匹配 / AUDIO MATCH</b><p>平台将演奏识别为已有录音。<small>The platform identifies it as an existing recording.</small></p></div>
+            </li>
+            <li data-event="2">
+              <span>03</span>
+              <div><b>加工节选一 / EDITED EXCERPT 01</b><p>第一次加工仍未通过。<small>The first edited excerpt is still rejected.</small></p></div>
+            </li>
+            <li data-event="3">
+              <span>04</span>
+              <div><b>加工节选二 / EDITED EXCERPT 02</b><p>第二次节选后成功生成。<small>The second excerpt is accepted for generation.</small></p></div>
+            </li>
+          </ol>
+
+          <div class="ownership-evidence">
+            <div class="ownership-evidence__head">
+              <span id="ownershipLabel">上传与识别过程 / UPLOAD AND RECOGNITION</span>
+              <div>
+                <button class="active" data-copyright-video="./assets/experiment_video/screen_r4_audio_match_alert.mp4" data-video-label="平台识别 / AUDIO MATCH ALERT">识别 / ALERT</button>
+                <button data-copyright-video="./assets/experiment_video/screen_r4_audio_upload_output.mp4" data-video-label="加工输入与生成结果 / EDITED INPUT AND OUTPUT">生成 / OUTPUT</button>
+              </div>
+            </div>
+            <video
+              id="copyrightVideo"
+              src="./assets/experiment_video/screen_r4_audio_match_alert.mp4"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            ></video>
+          </div>
+
+          <aside class="ownership-side">
+            <div class="system-alert">
+              <span>平台反馈 / PLATFORM RESPONSE</span>
+              <strong>检测到音频匹配</strong>
+              <p>AUDIO MATCH DETECTED · OWNERSHIP VERIFICATION REQUIRED</p>
+            </div>
+            <div class="ownership-outputs">
+              <p>生成结果 / GENERATED OUTPUTS</p>
+              <button
+                data-audio="./assets/experiment_audio/r4_a_own_audio_upload.mp3"
+                data-title="R4 / 生成结果 A / OUTPUT A"
+                data-subtitle="加工节选二通过识别 / Accepted after edited excerpt 02"
+                data-context="copyright"
+              >生成结果 A / OUTPUT A <span>聆听 / LISTEN ↗</span></button>
+              <button
+                data-audio="./assets/experiment_audio/r4_b_own_audio_upload.mp3"
+                data-title="R4 / 生成结果 B / OUTPUT B"
+                data-subtitle="第二个成功生成版本 / Second accepted generation"
+                data-context="copyright"
+              >生成结果 B / OUTPUT B <span>聆听 / LISTEN ↗</span></button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="chapter-bridge chapter-bridge--light-blue" aria-hidden="true">
+        <span>02</span><i></i><b>03</b>
+        <p>从证据，到对照 / FROM EVIDENCE TO COMPARISON</p>
+      </div>
+
+      <section class="chapter chapter--comparison chapter--blue" id="comparison" data-chapter>
+        <div class="chapter__number">03</div>
+        <div class="chapter__intro chapter__intro--compact reveal">
+          <p class="eyebrow">最终对照 / FINAL COMPARISON · HUMAN / MODEL</p>
+          <h2 class="title-lines">
+            <span>旋律被转移了，</span>
+            <span>文化翻译没有完成。</span>
+          </h2>
+          <p class="title-translation">THE MELODY WAS TRANSFERRED. THE CULTURAL TRANSLATION WAS NOT.</p>
+        </div>
+
+        <div class="comparison-grid reveal">
+          <article class="voice-card voice-card--human">
+            <div class="voice-card__meta">
+              <span>H / 01</span>
+              <span>EMBODIED MEMORY</span>
+            </div>
+            <h3>人的演奏<small>HUMAN PERFORMANCE</small></h3>
+            <span class="waveform waveform--large" data-waveform="12"></span>
+            <p>迟疑、呼吸和地方性的乐句处理，不是“风格标签”，而是身体经验。<small>Hesitation, breath and local phrasing are embodied knowledge, not style tags.</small></p>
+            <button
+              data-audio="./assets/experiment_audio/human_performance_fengshou_yuge.mp3"
+              data-title="人的演奏 / HUMAN PERFORMANCE"
+              data-subtitle="演奏者原始录音 / Original performer recording"
+              data-context="comparison"
+            >聆听人的演奏 / LISTEN TO HUMAN <span>↗</span></button>
+          </article>
+
+          <div class="comparison-axis">
+            <span>旋律 / MELODY</span>
+            <i></i>
+            <strong>≠</strong>
+            <i></i>
+            <span>记忆 / MEMORY</span>
+          </div>
+
+          <article class="voice-card voice-card--model">
+            <div class="voice-card__meta">
+              <span>M / 02</span>
+              <span>GENERATED COHERENCE</span>
+            </div>
+            <h3>模型输出<small>MODEL OUTPUT</small></h3>
+            <span class="waveform waveform--large" data-waveform="21"></span>
+            <p>声音更完整、更顺滑；与此同时，粗粝感、劳动感与地方性被压平。<small>The result is smoother and more complete, while local roughness and labour are flattened.</small></p>
+            <button
+              data-audio="./assets/experiment_audio/r4_b_own_audio_upload.mp3"
+              data-title="模型输出 / MODEL OUTPUT"
+              data-subtitle="R4生成结果 / R4 generated result"
+              data-context="comparison"
+            >聆听模型输出 / LISTEN TO MODEL <span>↗</span></button>
+          </article>
+        </div>
+      </section>
+
+      <div class="chapter-bridge chapter-bridge--blue-dark" aria-hidden="true">
+        <span>03</span><i></i><b>04</b>
+        <p>从差异，到发现 / FROM DIFFERENCE TO INTERPRETATION</p>
+      </div>
+
+      <section class="chapter chapter--conclusion chapter--dark" id="conclusion" data-chapter>
+        <div class="conclusion-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="chapter__number">04</div>
+        <div class="conclusion-copy reveal">
+          <p class="eyebrow">不可被复制的部分 / THE IRREPRODUCIBLE</p>
+          <h2 class="title-lines">
+            <span>AI复制了声音的表面，</span>
+            <span>却无法复制声音背后的</span>
+            <span>文化记忆。</span>
+          </h2>
+          <p class="title-translation">AI CAN REPRODUCE THE SURFACE OF SOUND, BUT NOT THE CULTURAL MEMORY IT CARRIES.</p>
+          <p>
+            这个项目不是为了证明AI是否足够“像”，而是用一次演奏者主导的实验，
+            观察传统音乐在技术翻译中被保留、被误读和被消音的部分。
+            <span class="translation">This performer-led inquiry traces what technology preserves, misreads and silences in traditional music.</span>
+          </p>
+        </div>
+
+        <div class="conclusion-actions reveal">
+          <a class="conclusion-actions__primary" href="./sound-sculpture.html?v=28&amp;mode=excerpt">
+            <span>进入3D声音实验室 / ENTER THE SOUND LAB</span>
+            <b>→</b>
+          </a>
+          <a href="./index.html">返回作品入口 / BACK TO COVER</a>
+          <p class="conclusion-copyright">
+            © 2026 梁珏童 / LIANG JUETONG<br />
+            网站内容与设计版权所有 / WEBSITE CONTENT &amp; DESIGN. ALL RIGHTS RESERVED.
+          </p>
+        </div>
+
+        <div class="conclusion-meta">
+          <span>梁珏童 / LIANG JUETONG</span>
+          <span>8段声音 / 8 AUDIO OUTPUTS</span>
+          <span>4轮实验 / 4 ITERATIVE ROUNDS</span>
+          <span>一个文化问题 / 1 CULTURAL QUESTION</span>
+        </div>
+      </section>
+    </main>
+
+    <div class="audio-dock" id="audioDock" aria-live="polite">
+      <button class="audio-dock__toggle" id="audioToggle" aria-label="播放或暂停">▶</button>
+      <div class="audio-dock__identity">
+        <span>正在聆听 / NOW LISTENING</span>
+        <strong id="audioTitle">声音 A / SOUND A</strong>
+        <p id="audioSubtitle">匿名生成声音 / Unlabelled generated sample</p>
+      </div>
+      <div class="audio-dock__transport">
+        <input id="audioProgress" type="range" min="0" max="100" value="0" step="0.1" aria-label="音频进度" />
+        <div><span id="audioCurrent">00:00</span><span id="audioDuration">00:00</span></div>
+      </div>
+      <button class="audio-dock__close" id="audioClose" aria-label="关闭播放器">×</button>
+      <audio id="contextAudio" preload="metadata"></audio>
+    </div>
+
+    <script src="./journey.js?v=4"></script>
+  </body>
+</html>

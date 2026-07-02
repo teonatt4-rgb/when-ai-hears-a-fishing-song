@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D声音实验室｜3D SOUND LABORATORY</title>
+    <link rel="stylesheet" href="./sound-sculpture.css?v=28" />
+  </head>
+  <body>
+    <main class="study">
+      <header class="study-head">
+        <div>
+          <a class="return-portal" href="./journey.html#conclusion">
+            <span>←</span>
+            返回研究路径 / RESEARCH JOURNEY
+          </a>
+          <p>梁珏童 · 交互声音展览 / LIANG JUETONG · INTERACTIVE SOUND EXHIBITION</p>
+          <h1>3D声音实验室 <span>/ 3D SOUND LABORATORY</span></h1>
+        </div>
+        <div class="study-meta">
+          <span>© 2026</span>
+          <span>真实音频 / REAL AUDIO</span>
+          <span>网页3D / WEBGL</span>
+          <span>8段声音 / 8 TRACKS</span>
+          <span>2种模式 / 2 MODES</span>
+        </div>
+      </header>
+
+      <section class="stage" id="stage">
+        <canvas id="soundCanvas" aria-label="音频驱动的3D声音体"></canvas>
+        <div class="fallback" id="fallback">
+          当前浏览器未能启动3D画面，请尝试刷新页面。
+        </div>
+
+        <div class="depth-grid"></div>
+        <div class="ambient ambient--a"></div>
+        <div class="ambient ambient--b"></div>
+
+        <div class="orbit orbit--one"></div>
+        <div class="orbit orbit--two"></div>
+        <div class="orbit orbit--three"></div>
+
+        <div class="scan-cage" id="scanCage">
+          <i></i><i></i><i></i><i></i>
+        </div>
+
+        <div class="stage-top">
+          <div class="live-mark">
+            <i></i>
+            声音驱动形态 / AUDIO-REACTIVE OBJECT
+          </div>
+          <div class="time-readout">
+            <span id="timeReadout">00:00.0</span>
+            <em id="totalReadout">/ 00:18.0</em>
+          </div>
+        </div>
+
+        <div class="round-copy">
+          <p id="roundCode">第01轮 / ROUND 01</p>
+          <h2 id="roundTitle">宽泛风格 / GENERIC STYLE</h2>
+          <span id="roundNote">宽泛提示形成一个尚未落入具体文化位置的声音体。 / A culturally unlocated sound object.</span>
+        </div>
+
+        <aside class="signal-panel">
+          <p>声音分析 / SIGNAL ANALYSIS</p>
+          <dl>
+            <div>
+              <dt>低频 / LOW</dt>
+              <dd><i id="lowBar"></i></dd>
+              <b id="lowValue">00</b>
+            </div>
+            <div>
+              <dt>中频 / MID</dt>
+              <dd><i id="midBar"></i></dd>
+              <b id="midValue">00</b>
+            </div>
+            <div>
+              <dt>高频 / HIGH</dt>
+              <dd><i id="highBar"></i></dd>
+              <b id="highValue">00</b>
+            </div>
+          </dl>
+          <div class="signal-source">
+            <span>正在读取 / NOW READING</span>
+            <p id="sourceLabel">R1 / 声音 A / SAMPLE A</p>
+          </div>
+        </aside>
+
+        <div class="threshold-card" id="thresholdCard">
+          <span id="thresholdStep">第04轮 / ROUND 04 · 生成输出 / GENERATED OUTPUT</span>
+          <strong id="thresholdTitle">生成完成 / GENERATION COMPLETED</strong>
+          <p id="thresholdNote">加工节选二通过识别 / Accepted after edited excerpt 02</p>
+        </div>
+
+        <div class="prompt-traces" id="promptTraces" aria-hidden="true">
+          <span>汕尾 / SHANWEI</span>
+          <span>岭南海岸 / LINGNAN COAST</span>
+          <span>滑奏 / GLISSANDO</span>
+          <span>双音 / DOUBLE STOPS</span>
+          <span>调式色彩 / MODAL COLOUR</span>
+        </div>
+
+        <div class="stage-bottom">
+          <div class="single-track-rail">
+            <span id="singleTrackLabel">R1 / 声音 A / SAMPLE A</span>
+            <em id="singleTrackMode">单曲 · 18秒 / SINGLE TRACK · 18 SEC</em>
+          </div>
+          <div class="round-rail">
+            <button type="button" data-round="0" class="is-active">
+              <span>R1</span><i></i>
+            </button>
+            <button type="button" data-round="1">
+              <span>R2</span><i></i>
+            </button>
+            <button type="button" data-round="2">
+              <span>R3</span><i></i>
+            </button>
+            <button type="button" data-round="3">
+              <span>R4</span><i></i>
+            </button>
+          </div>
+          <div class="timeline"><i id="timelineProgress"></i></div>
+        </div>
+
+        <button class="library-trigger" id="openLibrary" type="button">
+          <span>8段声音 / 8 SOUNDS</span>
+          选择声音 / CHOOSE A TRACK
+        </button>
+
+        <div class="track-selector is-open" id="trackSelector">
+          <div class="selector-head">
+            <div>
+              <p>声音体资料库 / SOUND OBJECT LIBRARY</p>
+              <h3>选择一段声音，让它成为3D形态 <small>/ Choose a sound and enter its spatial form.</small></h3>
+            </div>
+            <button type="button" id="closeLibrary" aria-label="关闭声音选择窗口">×</button>
+          </div>
+
+          <div class="mode-switch" aria-label="播放版本">
+            <button type="button" data-mode="excerpt" class="is-active">
+              <span>节选 / EXCERPT</span>
+              单曲 · 18秒 / SINGLE TRACK · 18 SEC
+            </button>
+            <button type="button" data-mode="full">
+              <span>完整音频 / FULL TRACK</span>
+              单曲完整播放 / COMPLETE SINGLE TRACK
+            </button>
+          </div>
+
+          <div class="track-grid">
+            <section class="round-group">
+              <header>
+                <span>第01轮 / ROUND 01</span>
+                <strong>宽泛风格 / GENERIC STYLE</strong>
+                <p>建立基础风格与声音轮廓</p>
+              </header>
+              <button class="track-card" type="button" data-track-round="0" data-track-variant="a">
+                <span class="track-card-inner">
+                  <span class="track-face track-front">
+                    <span class="track-id">声音 A / SAMPLE A</span>
+                    <strong>宽泛风格 / GENERIC STYLE</strong>
+                    <canvas class="track-wave" width="260" height="48"></canvas>
+                    <em>02:18</em>
+                  </span>
+                  <span class="track-face track-back">
+                    <span class="passport-kicker">声音档案 / SOUND PASSPORT</span>
+                    <strong>基础版本 A / BASELINE A</strong>
+                    <span class="passport-copy">宽泛风格提示形成的第一种声音轮廓</span>
+                    <span class="passport-action">点击聆听 / CLICK TO PLAY ↗</span>
+                  </span>
+                </span>
+              </button>
+              <button class="track-card" type="button" data-track-round="0" data-track-variant="b">
+                <span class="track-card-inner">
+                  <span class="track-face track-front">
+                    <span class="track-id">声音 B / SAMPLE B</span>
+                    <strong>宽泛风格 / GENERIC STYLE</strong>
+                    <canvas class="track-wave" width="260" height="48"></canvas>
+                    <em>02:19</em>
+                  </span>
+                  <span class="track-face track-back">
+                    <span class="passport-kicker">声音档案 / SOUND PASSPORT</span>
+                    <strong>基础版本 B / BASELINE B</strong>
+                    <span class="passport-copy">同一提示生成的另一种基础结果</span>
+                    <span class="passport-action">点击聆听 / CLICK TO PLAY ↗</span>
+                  </span>
+                </span>
+              </button>
+            </section>
+
+            <section class="round-group">
+              <header>
+                <span>第02轮 / ROUND 02</span>
+                <strong>地域语境 / CULTURAL CONTEXT</strong>
+                <p>加入地域语境与文化身份</p>
+              </header>
+              <button class="track-card" type="button" data-track-round="1" data-track-variant="a">
+                <span class="track-card-inner">
+                  <span class="track-face track-front">
+                    <span class="track-id">声音 A / SAMPLE A</span>
+                    <strong>地域语境 / CULTURAL CONTEXT</strong>
+                    <canvas class="track-wave" width="260" height="48"></canvas>
+                    <em>02:13</em>
+                  </span>
+                  <span class="track-face track-back">
+                    <span class="passport-kicker">声音档案 / SOUND PASSPORT</span>
+                    <strong>地域进入 / PLACE ENTERS</strong>
+                    <span class="passport-copy">地域语境开始改变声音的空间感</span>
+                    <span class="passport-action">点击聆听 / CLICK TO PLAY ↗</span>
+                  </span>
+                </span>
+              </button>
+              <button class="track-card" type="button" data-track-round="1" data-track-variant="b">
+                <span class="track-card-inner">
+                  <span class="track-face track-front">
+                    <span class="track-id">声音 B / SAMPLE B</span>
+                    <strong>地域语境 / CULTURAL CONTEXT</strong>
+                    <canvas class="track-wave" width="260" height="48"></canvas>
+                    <em>01:58</em>
+                  </span>
+                  <span class="track-face track-back">
+                    <span class="passport-kicker">声音档案 / SOUND PASSPORT</span>
+                    <strong>语境版本 B / CONTEXT B</strong>
+                    <span class="passport-copy">文化信息的另一种声音回应</span>
+                    <span class="passport-action">点击聆听 / CLICK TO PLAY ↗</span>
+                  </span>
+                </span>
+              </button>
+            </section>
+
+            <section class="round-group">
+              <header>
+                <span>第03轮 / ROUND 03</span>
+                <strong>演奏知识 / PERFORMANCE KNOWLEDGE</strong>
+                <p>把演奏知识转译为提示语言</p>
+              </header>
+              <button class="track-card" type="button" data-track-round="2" data-track-variant="a">
+                <span class="track-card-inner">
+                  <span class="track-face track-front">
+                    <span class="track-id">声音 A / SAMPLE A</span>
+                    <strong>演奏知识 / PERFORMANCE KNOWLEDGE</strong>
+                    <canvas class="track-wave" width="260" height="48"></canvas>
+                    <em>01:33</em>
+                  </span>
+                  <span class="track-face track-back">
+                    <span class="passport-kicker">声音档案 / SOUND PASSPORT</span>
+                    <strong>演奏知识导向 A / TECHNIQUE-LED A</strong>
+                    <span class="passport-copy">滑音、双音与调式色彩进入提示语言</span>
+                    <span class="passport-action">点击聆听 / CLICK TO PLAY ↗</span>
+                  </span>
+                </span>
+              </button>
+              <button class="track-card" type="button" data-track-round="2" data-track-variant="b">
+                <span class="track-card-inner">
+                  <span class="track-face track-front">
+                    <span class="track-id">声音 B / SAMPLE B</span>
+                    <strong>演奏知识 / PERFORMANCE KNOWLEDGE</strong>
+                    <canvas class="track-wave" width="260" height="48"></canvas>
+                    <em>01:28</em>
+                  </span>
+                  <span class="track-face track-back">
+                    <span class="passport-kicker">声音档案 / SOUND PASSPORT</span>
+                    <strong>演奏知识导向 B / TECHNIQUE-LED B</strong>
+                    <span class="passport-copy">演奏知识导向的另一种声音解释</span>
+                    <span class="passport-action">点击聆听 / CLICK TO PLAY ↗</span>
+                  </span>
+                </span>
+              </button>
+            </section>
+
+            <section class="round-group">
+              <header>
+                <span>第04轮 / ROUND 04</span>
+                <strong>识别边界 / RECOGNITION BOUNDARY</strong>
+                <p>处理识别限制并完成生成</p>
+              </header>
+              <button class="track-card" type="button" data-track-round="3" data-track-variant="a">
+                <span class="track-card-inner">
+                  <span class="track-face track-front">
+                    <span class="track-id">输出 A / OUTPUT A</span>
+                    <strong>生成结果 / GENERATED RESULT</strong>
+                    <canvas class="track-wave" width="260" height="48"></canvas>
+                    <em>01:52</em>
+                  </span>
+                  <span class="track-face track-back">
+                    <span class="passport-kicker">通过识别 / ACCEPTED OUTPUT</span>
+                    <strong>生成结果 A / GENERATED A</strong>
+                    <span class="passport-copy">处理后的节选通过识别并成功生成</span>
+                    <span class="passport-action">点击聆听 / CLICK TO PLAY ↗</span>
+                  </span>
+                </span>
+              </button>
+              <button class="track-card" type="button" data-track-round="3" data-track-variant="b">
+                <span class="track-card-inner">
+                  <span class="track-face track-front">
+                    <span class="track-id">输出 B / OUTPUT B</span>
+                    <strong>生成结果 / GENERATED RESULT</strong>
+                    <canvas class="track-wave" width="260" height="48"></canvas>
+                    <em>02:09</em>
+                  </span>
+                  <span class="track-face track-back">
+                    <span class="passport-kicker">通过识别 / ACCEPTED OUTPUT</span>
+                    <strong>生成结果 B / GENERATED B</strong>
+                    <span class="passport-copy">成功生成的第二种结果</span>
+                    <span class="passport-action">点击聆听 / CLICK TO PLAY ↗</span>
+                  </span>
+                </span>
+              </button>
+            </section>
+          </div>
+
+          <div class="selector-foot">
+            <p>以上两种模式只播放所选单曲；只有“20秒策展导览”会跨R1–R4播放。</p>
+            <button class="montage-button" id="startStudy" type="button">
+              播放20秒声音导览 / PLAY 20S R1–R4 MONTAGE
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="control-strip">
+        <div class="sample-toggle" aria-label="音频样本切换">
+          <span class="compare-label"><i>对照 / COMPARE</i>A / B</span>
+          <button type="button" data-variant="a" class="is-active">声音 A / SAMPLE A</button>
+          <button type="button" data-variant="b">声音 B / SAMPLE B</button>
+        </div>
+        <p>
+          任选声音，3D形态会随真实频谱演化；也可播放20秒R1–R4蒙太奇。拖动声音体可改变观看角度。
+        </p>
+        <button type="button" id="replayStudy">重播导览 / REPLAY 20S</button>
+      </div>
+
+      <footer class="study-copyright">
+        <span>© 2026 梁珏童 / LIANG JUETONG</span>
+        <span>网站内容与设计版权所有 / WEBSITE CONTENT &amp; DESIGN. ALL RIGHTS RESERVED.</span>
+      </footer>
+    </main>
+
+    <audio id="studyAudio" preload="metadata"></audio>
+    <script src="./sound-sculpture.js?v=24"></script>
+  </body>
+</html>

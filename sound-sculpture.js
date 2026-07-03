@@ -59,7 +59,7 @@ const rounds = [
   },
   {
     code: "第03轮 / ROUND 03",
-    title: "演奏知识 / PERFORMANCE KNOWLEDGE",
+    title: "演奏技巧 / PERFORMANCE TECHNIQUE",
     note: "滑奏、双音与调式色彩被转译为空间动作。 / Performance knowledge becomes spatial gesture.",
     a: "./assets/experiment_audio/r3_a_expert_prompt.mp3",
     b: "./assets/experiment_audio/r3_b_expert_prompt.mp3",

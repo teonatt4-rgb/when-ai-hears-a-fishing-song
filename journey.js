@@ -21,7 +21,7 @@ const rounds = [
     descriptionEn: "Regional references begin to reshape the model's sense of place.",
     findingZh: "文化标签让结果更接近场景，却仍把地方性处理成了可替换的氛围。",
     findingEn: "The setting becomes clearer, while locality remains an interchangeable atmosphere.",
-    tokens: ["SHANWEI FISHING SONG", "LINGNAN COAST", "WORK-SONG RHYTHM"],
+    tokens: ["SHANWEI FISHING-SONG CONTOUR", "WORK-SONG RHYTHM", "GUZHENG ARPEGGIOS"],
     video: "./assets/experiment_video/screen_r2_cultural_prompt_output.mp4",
     videoLabel: "R2 / 地域语境 / CULTURAL CONTEXT",
     audioA: "./assets/experiment_audio/r2_a_cultural_prompt.mp3",

@@ -1207,3 +1207,154 @@ a {
     width: 94%;
   }
 }
+
+/* Desktop readability pass for public exhibition */
+@media (min-width: 861px) {
+  .return-portal,
+  .study-head p {
+    font-size: 10px;
+  }
+
+  .study-head h1 {
+    font-size: 30px;
+  }
+
+  .study-head h1 span,
+  .study-meta span {
+    font-size: 10px;
+  }
+
+  .study-meta span {
+    padding: 7px 10px;
+  }
+
+  .study-copyright {
+    font-size: 9px;
+  }
+
+  .live-mark,
+  .time-readout,
+  .time-readout em,
+  .round-copy p,
+  .round-copy > span,
+  .signal-panel > p,
+  .signal-panel dt,
+  .signal-panel b,
+  .signal-source span,
+  .signal-source p,
+  .threshold-card span,
+  .threshold-card p,
+  .prompt-traces span,
+  .single-track-rail,
+  .single-track-rail em,
+  .library-trigger span {
+    font-size: 10px;
+  }
+
+  .round-copy h2 {
+    font-size: 31px;
+  }
+
+  .threshold-card strong {
+    font-size: 18px;
+  }
+
+  .library-trigger {
+    min-height: 48px;
+    padding: 0 16px;
+    font-size: 12px;
+  }
+
+  .selector-head p {
+    font-size: 11px;
+  }
+
+  .selector-head h3 {
+    font-size: 25px;
+  }
+
+  .selector-head h3 small {
+    font-size: 11px;
+  }
+
+  .mode-switch button {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 12px;
+    min-height: 43px;
+    font-size: 12px;
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  .mode-switch button span {
+    font-size: 11px;
+  }
+
+  .round-group {
+    padding: 10px;
+  }
+
+  .round-group > header {
+    min-height: 72px;
+  }
+
+  .round-group > header span,
+  .round-group > header strong {
+    font-size: 12px;
+    line-height: 1.35;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .round-group > header p {
+    font-size: 11px;
+  }
+
+  .track-card {
+    min-height: 112px;
+  }
+
+  .track-face {
+    padding: 12px 12px 10px;
+  }
+
+  .track-id,
+  .track-card strong {
+    font-size: 11px;
+    line-height: 1.3;
+    letter-spacing: .055em;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .track-card em,
+  .passport-kicker,
+  .passport-action {
+    font-size: 10px;
+  }
+
+  .passport-copy {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .selector-foot p,
+  .montage-button,
+  .compare-label,
+  .sample-toggle button,
+  #replayStudy,
+  .control-strip > p {
+    font-size: 11px;
+  }
+
+  .compare-label i {
+    font-size: 9px;
+  }
+
+  .montage-button,
+  .sample-toggle button,
+  #replayStudy {
+    min-height: 34px;
+  }
+}

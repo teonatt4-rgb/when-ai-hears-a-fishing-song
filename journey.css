@@ -1633,3 +1633,153 @@ main {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Desktop readability pass for portfolio review */
+@media (min-width: 861px) {
+  .site-head__home,
+  .site-head__actions,
+  .site-head__chapter {
+    font-size: 11px;
+  }
+
+  .site-head__home small,
+  .site-head__actions span {
+    font-size: 10px;
+  }
+
+  .site-head__chapter span,
+  .guide a span {
+    font-size: 10px;
+  }
+
+  .site-head__chapter p,
+  .guide a b {
+    font-size: 11px;
+  }
+
+  .eyebrow,
+  .title-translation {
+    font-size: 11px;
+  }
+
+  .lead {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .lead .translation,
+  .round-copy small {
+    font-size: 12px;
+  }
+
+  .blind-test__head,
+  .evidence-window__head,
+  .ownership-evidence__head {
+    font-size: 11px;
+  }
+
+  .sound-card__action,
+  .guess-panel span,
+  .guess-panel p {
+    font-size: 12px;
+  }
+
+  .guess-panel strong {
+    font-size: 17px;
+  }
+
+  .guess-panel__choices button {
+    min-width: 62px;
+    min-height: 38px;
+    font-size: 12px;
+  }
+
+  .round-rail span,
+  .round-rail i,
+  .round-reading__head p,
+  .round-reading h3 small,
+  .prompt-tokens span,
+  .finding span {
+    font-size: 11px;
+  }
+
+  .round-rail b {
+    font-size: 13px;
+  }
+
+  .round-reading > p,
+  .finding p {
+    font-size: 14px;
+    line-height: 1.72;
+  }
+
+  .finding small {
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .event-chain span {
+    font-size: 11px;
+  }
+
+  .event-chain b {
+    font-size: 12px;
+  }
+
+  .event-chain p {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .event-chain p small {
+    font-size: 10px;
+  }
+
+  .ownership-evidence__head button,
+  .system-alert span,
+  .system-alert p,
+  .ownership-outputs > p {
+    font-size: 10px;
+  }
+
+  .system-alert strong {
+    font-size: 18px;
+  }
+
+  .ownership-outputs button {
+    font-size: 12px;
+  }
+
+  .voice-card__meta {
+    font-size: 10px;
+  }
+
+  .voice-card h3 small {
+    font-size: 11px;
+  }
+
+  .voice-card > p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .voice-card > p small {
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .conclusion-meta,
+  .conclusion-copyright {
+    font-size: 10px;
+  }
+
+  .audio-dock__identity span,
+  .audio-dock__identity p,
+  .audio-dock__transport div {
+    font-size: 10px;
+  }
+
+  .audio-dock__identity strong {
+    font-size: 14px;
+  }
+}
